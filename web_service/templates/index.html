@@ -4,167 +4,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Topsis Master | Smart Decision Tool</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Topsis Master</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6C63FF;
-            --primary-hover: #5a52d5;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --text-dark: #2D3748;
-            --text-light: #718096;
+            --foreground: #000000;
+            --background: #ffffff;
+            --border: #eaeaea;
+            --input-bg: #fafafa;
+            --focus-ring: #000000;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
+            background-color: var(--background);
+            color: var(--foreground);
+            -webkit-font-smoothing: antialiased;
         }
 
         .container {
             width: 100%;
-            max-width: 500px;
-            padding: 20px;
+            max-width: 480px;
+            padding: 24px;
         }
 
         .card {
-            background: var(--card-bg);
-            border-radius: 20px;
+            background: var(--background);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             padding: 40px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
+            /* No shadow for brut/minimal look, or very subtle */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 10px;
-            color: var(--text-dark);
+            margin: 0 0 8px 0;
+            color: var(--foreground);
             font-weight: 600;
+            font-size: 1.5rem;
+            letter-spacing: -0.03em;
         }
 
         p.subtitle {
             text-align: center;
-            color: var(--text-light);
-            margin-bottom: 30px;
+            color: #666;
+            margin-bottom: 32px;
             font-size: 0.9rem;
+            font-weight: 400;
         }
 
         .form-group {
-            margin-bottom: 25px;
-            position: relative;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-dark);
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--foreground);
         }
 
         input[type="text"],
         input[type="email"],
         input[type="file"] {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            background: #f7fafc;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--input-bg);
             font-family: inherit;
-            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            color: var(--foreground);
+            transition: all 0.2s ease;
             box-sizing: border-box;
+            outline: none;
         }
 
         input[type="file"] {
-            padding: 9px;
-            background: white;
+            padding: 8px;
+            background: var(--background);
         }
 
         input:focus {
-            border-color: var(--primary);
-            background: white;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+            border-color: var(--focus-ring);
+            background: var(--background);
         }
 
         .hint {
-            font-size: 0.8rem;
-            color: #a0aec0;
+            font-size: 0.75rem;
+            color: #888;
             margin-top: 5px;
         }
 
         button {
             width: 100%;
-            padding: 15px;
-            background: var(--primary);
-            color: white;
+            padding: 12px;
+            background: var(--foreground);
+            color: var(--background);
             border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(108, 99, 255, 0.3);
+            transition: opacity 0.2s ease;
+            margin-top: 10px;
         }
 
         button:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(108, 99, 255, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
+            opacity: 0.8;
         }
 
         .success-msg {
-            color: #38a169;
-            font-size: 0.85rem;
+            color: #000;
+            font-size: 0.8rem;
             font-weight: 500;
             margin-top: 8px;
-            background: #f0fff4;
-            padding: 8px;
-            border-radius: 8px;
-            border-left: 3px solid #38a169;
         }
 
         .error-msg {
-            color: #e53e3e;
-            font-size: 0.85rem;
+            color: #d00;
+            font-size: 0.8rem;
             font-weight: 500;
             margin-top: 8px;
-            background: #fff5f5;
-            padding: 8px;
-            border-radius: 8px;
-            border-left: 3px solid #e53e3e;
         }
 
         /* File Input Styling */
         input[type="file"]::file-selector-button {
-            margin-right: 15px;
-            padding: 8px 12px;
-            border-radius: 6px;
-            background: #edf2f7;
+            margin-right: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: #eee;
             border: none;
-            color: var(--text-dark);
+            color: #000;
+            font-weight: 500;
             cursor: pointer;
+            font-size: 0.75rem;
             transition: background 0.2s;
         }
 
         input[type="file"]::file-selector-button:hover {
-            background: #e2e8f0;
+            background: #ddd;
         }
     </style>
 </head>
@@ -173,33 +160,33 @@
     <div class="container">
         <div class="card">
             <h1>Topsis Master</h1>
-            <p class="subtitle">Multi-Criteria Decision Making Simplified</p>
+            <p class="subtitle">Decision making. Simplified.</p>
 
             <form method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="file">Upload Dataset (CSV/Excel)</label>
+                    <label for="file">Dataset</label>
                     <input type="file" id="file" name="file" required accept=".csv, .xlsx">
                     <div id="analysis-result"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="weights">Weights</label>
-                    <input type="text" id="weights" name="weights" required placeholder="e.g., 1, 1, 1, 1">
-                    <div class="hint">Comma-separated values for importance</div>
+                    <input type="text" id="weights" name="weights" required placeholder="1, 1, 1, 1">
+                    <div class="hint">Comma-separated values</div>
                 </div>
 
                 <div class="form-group">
                     <label for="impacts">Impacts</label>
-                    <input type="text" id="impacts" name="impacts" required placeholder="e.g., +, +, -, +">
-                    <div class="hint">Use '+' for benefit, '-' for cost</div>
+                    <input type="text" id="impacts" name="impacts" required placeholder="+, +, -, +">
+                    <div class="hint">'+' for benefit, '-' for cost</div>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Receive Results</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                    <label for="email">Result Email</label>
+                    <input type="email" id="email" name="email" required placeholder="name@example.com">
                 </div>
 
-                <button type="submit">Calculate & Send</button>
+                <button type="submit">Calculate Result</button>
             </form>
         </div>
     </div>
@@ -215,7 +202,7 @@
             const formData = new FormData();
             formData.append('file', file);
 
-            resultDiv.innerHTML = '<span style="color: var(--primary); font-size: 0.85rem;">Analyzing configuration...</span>';
+            resultDiv.innerHTML = '<span style="color: #666; font-size: 0.8rem;">Analyzing...</span>';
 
             fetch('/analyze', {
                 method: 'POST',
@@ -224,10 +211,9 @@
                 .then(response => response.json())
                 .then(data => {
                     if (data.error) {
-                        resultDiv.innerHTML = `<div class="error-msg">⚠️ ${data.error}</div>`;
+                        resultDiv.innerHTML = `<div class="error-msg">Error: ${data.error}</div>`;
                     } else {
-                        resultDiv.innerHTML = `<div class="success-msg">✅ Detected ${data.num_criteria} parameters.</div>`;
-                        // Optional: pre-fill placeholders
+                        resultDiv.innerHTML = `<div class="success-msg">✓ ${data.num_criteria} criteria detected</div>`;
                         const count = data.num_criteria;
                         document.getElementById('weights').placeholder = Array(count).fill('1').join(', ');
                         document.getElementById('impacts').placeholder = Array(count).fill('+').join(', ');
@@ -235,7 +221,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    resultDiv.innerHTML = '<div class="error-msg">Failed to analyze file.</div>';
+                    resultDiv.innerHTML = '<div class="error-msg">Analysis failed</div>';
                 });
         });
     </script>
