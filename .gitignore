@@ -1,0 +1,27 @@
+# Secrets
+.env
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Web Service Runtime Data
+web_service/uploads/
+web_service/results/
+uploads/
+results/
+
+# Editor/OS files
+.DS_Store
+.vscode/
+
+# Local testing results
+*.csv
+*.xlsx
+exclude: data.csv

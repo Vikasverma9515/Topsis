@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Topsis Master | Smart Decision Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-hover: #5a52d5;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #2D3748;
+            --text-light: #718096;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        p.subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            background: #f7fafc;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            padding: 9px;
+            background: white;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: #a0aec0;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(108, 99, 255, 0.3);
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(108, 99, 255, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .success-msg {
+            color: #38a169;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 8px;
+            background: #f0fff4;
+            padding: 8px;
+            border-radius: 8px;
+            border-left: 3px solid #38a169;
+        }
+
+        .error-msg {
+            color: #e53e3e;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 8px;
+            background: #fff5f5;
+            padding: 8px;
+            border-radius: 8px;
+            border-left: 3px solid #e53e3e;
+        }
+
+        /* File Input Styling */
+        input[type="file"]::file-selector-button {
+            margin-right: 15px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #edf2f7;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        input[type="file"]::file-selector-button:hover {
+            background: #e2e8f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Topsis Master</h1>
+            <p class="subtitle">Multi-Criteria Decision Making Simplified</p>
+
+            <form method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Upload Dataset (CSV/Excel)</label>
+                    <input type="file" id="file" name="file" required accept=".csv, .xlsx">
+                    <div id="analysis-result"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="weights">Weights</label>
+                    <input type="text" id="weights" name="weights" required placeholder="e.g., 1, 1, 1, 1">
+                    <div class="hint">Comma-separated values for importance</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="impacts">Impacts</label>
+                    <input type="text" id="impacts" name="impacts" required placeholder="e.g., +, +, -, +">
+                    <div class="hint">Use '+' for benefit, '-' for cost</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Receive Results</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <button type="submit">Calculate & Send</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('file').addEventListener('change', function (e) {
+            const fileInput = e.target;
+            const file = fileInput.files[0];
+            const resultDiv = document.getElementById('analysis-result');
+
+            if (!file) return;
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            resultDiv.innerHTML = '<span style="color: var(--primary); font-size: 0.85rem;">Analyzing configuration...</span>';
+
+            fetch('/analyze', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        resultDiv.innerHTML = `<div class="error-msg">⚠️ ${data.error}</div>`;
+                    } else {
+                        resultDiv.innerHTML = `<div class="success-msg">✅ Detected ${data.num_criteria} parameters.</div>`;
+                        // Optional: pre-fill placeholders
+                        const count = data.num_criteria;
+                        document.getElementById('weights').placeholder = Array(count).fill('1').join(', ');
+                        document.getElementById('impacts').placeholder = Array(count).fill('+').join(', ');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    resultDiv.innerHTML = '<div class="error-msg">Failed to analyze file.</div>';
+                });
+        });
+    </script>
+</body>
+
+</html>
