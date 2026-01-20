@@ -14,9 +14,12 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-# Use absolute paths based on CWD to avoid Flask root_path confusion
-app.config['UPLOAD_FOLDER'] = os.path.join(os.getcwd(), 'uploads')
-app.config['RESULT_FOLDER'] = os.path.join(os.getcwd(), 'results')
+app = Flask(__name__)
+# Use /tmp for serverless environments (Vercel)
+# Local fallback: use local directory if /tmp not relevant on Windows (though Mac/Linux have it)
+# For Vercel, we MUST use /tmp
+app.config['UPLOAD_FOLDER'] = '/tmp/uploads'
+app.config['RESULT_FOLDER'] = '/tmp/results'
 
 # Ensure directories exist
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
