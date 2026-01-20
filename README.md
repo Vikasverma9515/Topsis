@@ -39,10 +39,10 @@ This project provides a complete suite to perform TOPSIS analysis:
 
 ```mermaid
 graph LR
-    A[Data Input<br>(CSV/Excel)] --> B[Data Validation<br>(Check Numeric/Weights)]
-    B --> C[Normalization &<br>Weight Application]
-    C --> D[Ideal Solution<br>(Best & Worst)]
-    D --> E[Ranking &<br>Result Generation]
+    A["Data Input<br>(CSV/Excel)"] --> B["Data Validation<br>(Check Numeric/Weights)"]
+    B --> C["Normalization &<br>Weight Application"]
+    C --> D["Ideal Solution<br>(Best & Worst)"]
+    D --> E["Ranking &<br>Result Generation"]
     style A fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
     style B fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
     style C fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
